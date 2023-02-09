@@ -1,5 +1,5 @@
 public class Digit {
-  int value;
+  int digit;
   Digit next;
   Digit prev;
 }
