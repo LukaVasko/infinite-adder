@@ -41,6 +41,41 @@ class Main {
     Digit tail2 = curr2;
 
     // Calculate
+    int sum = 0;
+    Digit tail3 = new Digit;
+    Digit curr3 = tail3;
+    Digit prev3 = tail3;
+    
+    curr3.digit = tail1.digit + tail2.digit;
+    if(curr3.digit >= 10) {curr3.digit -= 10; sum++;} 
+    while(curr2.prev != null && curr1.prev != null) {
+      prev3 = curr3;
+      curr3.next = new Digit();
+      curr3 = curr3.next;
+      curr3.digit = curr2.digit + curr1.digit + sum;
+      if(curr3.digit >= 10) {sum++; curr3.digit -= 10;}
+      curr2 = curr2.prev;
+      curr1 = curr1.prev;
+    }
+    while(curr1.prev != null && curr2.prev == null) {
+      prev3 = curr3;
+      curr3.next = new Digit();
+      curr3 = curr3.next;
+      curr3.digit = curr1.digit;
+      curr1 = curr1.prev;
+    }
+    while(curr1.prev == null && curr2.prev != null) {
+      prev3 = curr3;
+      curr3.next = new Digit();
+      curr3 = curr3.next;
+      curr3.digit = curr2.digit;
+      curr2 = curr2.prev;
+    }
+
+    while(curr3.prev != null) {
+      System.out.print(curr3.digit);
+      curr3 = curr3.prev;
+    }
 
   }
 }
